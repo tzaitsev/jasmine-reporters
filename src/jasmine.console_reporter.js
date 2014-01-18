@@ -88,6 +88,15 @@
             var console = jasmine.getGlobal().console;
             if (console && console.log) {
                 console.log(str);
+                 //Heavy dependency on requirejs and socketio already existing in the dom
+                 if (!this.socket) {
+                    var sio = require('socketio');
+                    this.socket = sio.connect('https://local.rabb.it:3400/'); //Templatization needed 
+                }
+                if(this.socket){
+                    this.socket.emit('message', str);
+                }
+
             }
         }
     };
