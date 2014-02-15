@@ -14,15 +14,16 @@
     var TeamcityReporter = function() {
         this.started = false;
         this.finished = false;
+        this.runTime = Date.now();
     };
 
     TeamcityReporter.prototype = {
         reportRunnerResults: function(runner) {
-            this.log("##teamcity[progressFinish 'Running Jasmine Tests']");
+            this.log("##teamcity[progressFinish 'Running Jasmine Tests: " + this.runTime + "']");
         },
 
         reportRunnerStarting: function(runner) {
-            this.log("##teamcity[progressStart 'Running Jasmine Tests']");
+            this.log("##teamcity[progressStart 'Running Jasmine Tests: " + this.runTime + "']");
         },
 
         reportSpecResults: function(spec) { },
